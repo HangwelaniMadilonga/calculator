@@ -2,3 +2,46 @@
     padding: 0;
     margin: 0;
 }
+
+body {
+    background-color: rgb(92, 79, 124);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#calculator-container {
+    width: 20rem;
+    min-height: 37rem;
+    margin-top: 8rem;
+    border: 1.2px solid rgb(19, 16, 16);
+    border-width: 2px;
+    border-radius: 40px;
+    overflow: hidden;
+
+}
+
+#calculator-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: rgb(56, 48, 79);
+    min-height: 30%;
+    width: 20rem;
+    font-size: 2rem;
+    font-family: 'LED Digital 7', sans-serif;
+    /* border-top-right-radius: 20rem;
+    border-top-left-radius: 20rem; */
+}
+
+.screen {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#calculations-asked {
+    margin-right: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
