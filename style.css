@@ -45,12 +45,14 @@ body {
     margin-right: 2rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
-    color: grey;
+    color: greenyellow;
 }
 
 #calculations-answer {
     margin-right: 2rem;
     padding-bottom: 2rem;
+    font-size: 3rem;
+    color: greenyellow;
     font-size: 3rem;
 
 }
@@ -80,6 +82,24 @@ body {
     cursor: pointer;
     font-size: larger;
     border: 1.2px solid rgb(19, 16, 16);
+    color: greenyellow;
 
+}
 
+animation-add{
+animation: myAnim 0.5s ease 0s 1 normal forwards;
+}
+
+@keyframes myAnim {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
 }
