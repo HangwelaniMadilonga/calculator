@@ -86,7 +86,7 @@ body {
 
 }
 
-animation-add{
+.animation-add{
 animation: myAnim 0.5s ease 0s 1 normal forwards;
 }
 
@@ -102,4 +102,10 @@ animation: myAnim 0.5s ease 0s 1 normal forwards;
 	100% {
 		transform: scale(1);
 	}
+}
+
+#addition-sign{
+    font-family: Arial, sans-serif;
+    
+
 }
