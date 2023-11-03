@@ -4,7 +4,7 @@ let calculationResult = 0;
 let currentValue = 0;
 let currentOperator = "";
 
-const calculatorOperations = ["*","+","-","^","*","%"];
+const calculatorOperations = ["*","+","-","^","*","÷"];
 
 let buttons = document.querySelectorAll('.calculator-button');
 let calculatorQuestion = document.querySelector('#calculations-asked');
@@ -22,13 +22,15 @@ for (let button of buttons) {
         if (button.textContent === "AC"){
             calculatorQuestion.textContent = "";
             calculatorAnswer.textContent = "";
+            firstValue = 0;
+            secondValue = 0;
         }
         else if(button.textContent === "DEL"){
            // if(button.textContent.slice(-1) =)
            if(calculatorOperations.includes(button.textContent.slice(-1))){
             firstValue = 0;
            }
-            calculatorQuestion.textContent = calculatorQuestion.textContent.slice(0, -1);;
+            calculatorQuestion.textContent = calculatorQuestion.textContent.slice(0, -1);
         }
         else if(button.textContent === "%"){
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
@@ -38,13 +40,23 @@ for (let button of buttons) {
             console.log(firstValue);
             calculatorQuestion.textContent = firstValue.toString();
         }
-/*
-if(calculatorOperations.includes(button.textContent)){
-            firstValue = 0;
-           }*/
+
+
         else{
-        
-        calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
+            if(calculatorOperations.includes(button.textContent)){
+                for (let i = 0; i < calculatorQuestion.textContent.length; i++) { 
+                    if(calculatorOperations.includes(calculatorQuestion.textContent[i])){
+                        alert("Cannot have two operators consecutively!");
+                        return;
+                    }
+                };
+                
+                firstValue = calculatorQuestion.textContent;
+                currentOperator = button.textContent;
+                calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
+               }
+        else{
+        calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;}
         // calculatorQuestion.textContent  =  calculatorQuestion.textContent .replace(/\s+/g, "");
     }
         //I need to iterate through the string and then from there I am going to seperate them.
