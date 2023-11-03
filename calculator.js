@@ -1,8 +1,10 @@
 let firstValue = 0;
 let secondValue = 0;
 let calculationResult = 0;
+let currentValue = 0;
+let currentOperator = "";
 
-const calculatorOperations = ["*","+","-","%","^","x","%","="];
+const calculatorOperations = ["*","+","-","^","*","%"];
 
 let buttons = document.querySelectorAll('.calculator-button');
 let calculatorQuestion = document.querySelector('#calculations-asked');
@@ -16,15 +18,30 @@ for (let button of buttons) {
             button.classList.remove('animation-add');
         },500)
         button.textContent = button.textContent.replace(/\s+/g, "");
-        
+
         if (button.textContent === "AC"){
             calculatorQuestion.textContent = "";
             calculatorAnswer.textContent = "";
         }
         else if(button.textContent === "DEL"){
+           // if(button.textContent.slice(-1) =)
+           if(calculatorOperations.includes(button.textContent.slice(-1))){
+            firstValue = 0;
+           }
             calculatorQuestion.textContent = calculatorQuestion.textContent.slice(0, -1);;
         }
-
+        else if(button.textContent === "%"){
+            calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
+            //console.log(calculatorQuestion.textContent.slice(0,-1));
+            
+            firstValue = parseInt(calculatorQuestion.textContent.slice(0,-1))/100;
+            console.log(firstValue);
+            calculatorQuestion.textContent = firstValue.toString();
+        }
+/*
+if(calculatorOperations.includes(button.textContent)){
+            firstValue = 0;
+           }*/
         else{
         
         calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
