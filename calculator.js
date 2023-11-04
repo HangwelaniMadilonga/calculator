@@ -52,7 +52,7 @@ for (let button of buttons) {
             };
         //if the value is not an operator and save
             
-            firstValue = calculatorQuestion.textContent;
+            firstValue = parseFloat(calculatorQuestion.textContent);
             currentOperator = button.textContent;
             saveSecondValue = true;
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
@@ -60,9 +60,10 @@ for (let button of buttons) {
 
            else{
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
+            firstValue = parseFloat(calculatorQuestion.textContent);
             if(saveSecondValue){
                 secondValue = calculatorQuestion.textContent.slice(calculatorQuestion.textContent.indexOf(currentOperator) + 1,calculatorQuestion.textContent.length)
-                console.log(secondValue)
+            
             }
            }
 
