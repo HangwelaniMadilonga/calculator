@@ -3,6 +3,7 @@ let secondValue = 0;
 let calculationResult = 0;
 let currentValue = 0;
 let currentOperator = "";
+let saveSecondNum = false;
 
 const calculatorOperations = ["*","+","-","^","*","÷"];
 
@@ -27,8 +28,9 @@ for (let button of buttons) {
         }
         else if(button.textContent === "DEL"){
            // if(button.textContent.slice(-1) =)
-           if(calculatorOperations.includes(button.textContent.slice(-1))){
+           if(calculatorOperations.includes(calculatorQuestion.textContent.slice(-1))){
             firstValue = 0;
+            saveSecondNum = false;
            }
             calculatorQuestion.textContent = calculatorQuestion.textContent.slice(0, -1);
         }
@@ -36,39 +38,33 @@ for (let button of buttons) {
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
             //console.log(calculatorQuestion.textContent.slice(0,-1));
             
-            firstValue = parseInt(calculatorQuestion.textContent.slice(0,-1))/100;
+            firstValue = parseFloat(calculatorQuestion.textContent.slice(0,-1))/100;
             console.log(firstValue);
             calculatorQuestion.textContent = firstValue.toString();
         }
+        else if(calculatorOperations.includes(button.textContent)){
+            for (let i = 0; i < calculatorQuestion.textContent.length; i++) { 
+                if(calculatorOperations.includes(calculatorQuestion.textContent[i])){
+                    alert("Cannot have two operators consecutively!");
+                    return;
+                }
+            };
+        //if the value is not an operator and save
+            
+            firstValue = calculatorQuestion.textContent;
+            currentOperator = button.textContent;
+            saveSecondNum = true;
+            calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
+           }
 
-
-        else{
-            if(calculatorOperations.includes(button.textContent)){
-                for (let i = 0; i < calculatorQuestion.textContent.length; i++) { 
-                    if(calculatorOperations.includes(calculatorQuestion.textContent[i])){
-                        alert("Cannot have two operators consecutively!");
-                        return;
-                    }
-                };
-                
-                firstValue = calculatorQuestion.textContent;
-                currentOperator = button.textContent;
-                calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
-               }
-        else{
-        calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;}
-        // calculatorQuestion.textContent  =  calculatorQuestion.textContent .replace(/\s+/g, "");
-    }
-        //I need to iterate through the string and then from there I am going to seperate them.
-        //then after that i calculate using javascript
-        //Problem will be when it is too long and then we sepeprate them.
-        //we can divide them accordint to the array.turn them into numbers and then make it an expression.
+        
+       
         /* 
-        5+6-23%2
-
-        we can just cause the
-        
-        
+        make it so that the next number after the operator gets saved as the second number.
+        second number should be equal to true
+        After every update the calculator shoudl show the answer on the bottom.
+        If a person decides to add another operator then the finally answer updates over the question and then the result is displayed
+        second number becomes false
         */
      
     })
