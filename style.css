@@ -39,6 +39,7 @@ body {
 .screen {
     display: flex;
     justify-content: flex-end;
+    height:6rem;
 }
 
 #calculations-asked {

@@ -1,7 +1,7 @@
 let firstValue = 0;
 let secondValue = 0;
 let calculationResult = 0;
-let currentValue = 0;
+let currentAnswer = 0;
 let currentOperator = "";
 let saveSecondValue = false;
 
@@ -63,7 +63,9 @@ for (let button of buttons) {
             firstValue = parseFloat(calculatorQuestion.textContent);
             if(saveSecondValue){
                 secondValue = calculatorQuestion.textContent.slice(calculatorQuestion.textContent.indexOf(currentOperator) + 1,calculatorQuestion.textContent.length)
-            
+                secondValue = parseFloat(secondValue);
+                currentAnswer = firstValue + secondValue;
+                calculatorAnswer.textContent = currentAnswer.toString();
             }
            }
 
