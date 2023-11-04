@@ -3,7 +3,7 @@ let secondValue = 0;
 let calculationResult = 0;
 let currentValue = 0;
 let currentOperator = "";
-let saveSecondNum = false;
+let saveSecondValue = false;
 
 const calculatorOperations = ["*","+","-","^","*","÷"];
 
@@ -25,12 +25,13 @@ for (let button of buttons) {
             calculatorAnswer.textContent = "";
             firstValue = 0;
             secondValue = 0;
+            saveSecondValue = false;
         }
         else if(button.textContent === "DEL"){
            // if(button.textContent.slice(-1) =)
            if(calculatorOperations.includes(calculatorQuestion.textContent.slice(-1))){
             firstValue = 0;
-            saveSecondNum = false;
+            saveSecondValue = false;
            }
             calculatorQuestion.textContent = calculatorQuestion.textContent.slice(0, -1);
         }
@@ -44,7 +45,7 @@ for (let button of buttons) {
         }
         else if(calculatorOperations.includes(button.textContent)){
             for (let i = 0; i < calculatorQuestion.textContent.length; i++) { 
-                if(calculatorOperations.includes(calculatorQuestion.textContent[i])){
+                if(calculatorOperations.includes(calculatorQuestion.textContent[currentOperator])){
                     alert("Cannot have two operators consecutively!");
                     return;
                 }
@@ -53,8 +54,16 @@ for (let button of buttons) {
             
             firstValue = calculatorQuestion.textContent;
             currentOperator = button.textContent;
-            saveSecondNum = true;
+            saveSecondValue = true;
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
+           }
+
+           else{
+            calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
+            if(saveSecondValue){
+                secondValue = calculatorQuestion.textContent.slice(calculatorQuestion.textContent.charAt(0),calculatorQuestion.textContent.length)
+                console.log(secondValue)
+            }
            }
 
         
