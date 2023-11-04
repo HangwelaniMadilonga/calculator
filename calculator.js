@@ -45,7 +45,7 @@ for (let button of buttons) {
         }
         else if(calculatorOperations.includes(button.textContent)){
             for (let i = 0; i < calculatorQuestion.textContent.length; i++) { 
-                if(calculatorOperations.includes(calculatorQuestion.textContent[currentOperator])){
+                if(calculatorOperations.includes(calculatorQuestion.textContent[i])){
                     alert("Cannot have two operators consecutively!");
                     return;
                 }
