@@ -61,7 +61,7 @@ for (let button of buttons) {
            else{
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
             if(saveSecondValue){
-                secondValue = calculatorQuestion.textContent.slice(calculatorQuestion.textContent.charAt(0),calculatorQuestion.textContent.length)
+                secondValue = calculatorQuestion.textContent.slice(calculatorQuestion.textContent.indexOf(currentOperator) + 1,calculatorQuestion.textContent.length)
                 console.log(secondValue)
             }
            }
