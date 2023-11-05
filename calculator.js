@@ -88,9 +88,19 @@ for (let button of buttons) {
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
             //console.log(calculatorQuestion.textContent.slice(0,-1));
             
-            firstValue = parseFloat(calculatorQuestion.textContent.slice(0,-1))/100;
-            console.log(firstValue);
-            calculatorQuestion.textContent = firstValue.toString();
+           
+            if(isContinuingCalculation ){
+                secondValue = calculatorQuestion.textContent.slice(calculatorQuestion.textContent.indexOf(currentOperator) + 1,calculatorQuestion.textContent.length)
+                secondValue = parseFloat(secondValue)/100;
+                calculatorQuestion.textContent = firstValue.toString() + currentOperator + secondValue.toString();
+                updateAnswer();
+            }
+            else{
+ firstValue = parseFloat(calculatorQuestion.textContent.slice(0,-1))/100;
+ calculatorQuestion.textContent = firstValue.toString();
+            }
+            
+            
         }
         else if(calculatorOperations.includes(button.textContent)){
             if(isContinuingCalculation){
