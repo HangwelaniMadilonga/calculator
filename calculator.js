@@ -39,13 +39,15 @@ for (let button of buttons) {
         }
         else if(button.textContent === "DEL"){
            // if(button.textContent.slice(-1) =)
+           calculatorQuestion.textContent = calculatorQuestion.textContent.slice(0, -1);
            if(calculatorOperations.includes(calculatorQuestion.textContent.slice(-1))){
             firstValue = 0;
             isSavingSecondValue = false;
             isContinuingCalculation = false;
+            calculatorAnswer.textContent = "";
            }
-            calculatorQuestion.textContent = calculatorQuestion.textContent.slice(0, -1);
-            if(isSavingSecondValue){
+            
+            if(isContinuingCalculation){
                 updateAnswer();
             }
         }
