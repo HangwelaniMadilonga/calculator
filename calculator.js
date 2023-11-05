@@ -12,10 +12,43 @@ let buttons = document.querySelectorAll('.calculator-button');
 let calculatorQuestion = document.querySelector('#calculations-asked');
 let calculatorAnswer = document.querySelector('#calculations-answer');
 
+let addValues = () => {
+    currentAnswer = firstValue + secondValue;
+};
+let subtractValues = () => {
+    currentAnswer = firstValue - secondValue;
+
+};
+let multiplyValues = () => {
+    currentAnswer = firstValue * secondValue;
+};
+let exponentCalulate = () => {
+    currentAnswer = firstValue ** secondValue;
+    
+};
+divideValues = () => {
+    currentAnswer = firstValue/secondValue;
+};
+
 let updateAnswer = () => {
     secondValue = calculatorQuestion.textContent.slice(calculatorQuestion.textContent.indexOf(currentOperator) + 1,calculatorQuestion.textContent.length)
                 secondValue = parseFloat(secondValue);
-                currentAnswer = firstValue + secondValue;
+                if(currentOperator === "+"){
+                    addValues();
+                }
+                if(currentOperator === "-"){
+                    subtractValues();
+                }
+                if(currentOperator === "*"){
+                    multiplyValues();
+                }
+                if(currentOperator === "÷"){
+                    divideValues();
+                }
+                if(currentOperator === "^"){
+                    exponentCalulate();
+                }
+                
                 calculatorAnswer.textContent = currentAnswer.toString();
                 isContinuingCalculation = true;
 }
@@ -80,6 +113,11 @@ for (let button of buttons) {
             isSavingSecondValue = true;
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
             
+           }
+
+           else if(button.textContent === "="){
+            calculatorAnswer.textContent = "";
+            calculatorQuestion.textContent = currentAnswer.toString();
            }
 
            else{
