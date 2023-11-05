@@ -3,7 +3,7 @@ let secondValue = 0;
 let calculationResult = 0;
 let currentAnswer = 0;
 let currentOperator = "";
-let saveSecondValue = false;
+let isSavingSecondValue = false;
 let isContinuingCalculation = false;
 
 const calculatorOperations = ["*","+","-","^","*","÷"];
@@ -11,6 +11,14 @@ const calculatorOperations = ["*","+","-","^","*","÷"];
 let buttons = document.querySelectorAll('.calculator-button');
 let calculatorQuestion = document.querySelector('#calculations-asked');
 let calculatorAnswer = document.querySelector('#calculations-answer');
+
+let updateAnswer = () => {
+    secondValue = calculatorQuestion.textContent.slice(calculatorQuestion.textContent.indexOf(currentOperator) + 1,calculatorQuestion.textContent.length)
+                secondValue = parseFloat(secondValue);
+                currentAnswer = firstValue + secondValue;
+                calculatorAnswer.textContent = currentAnswer.toString();
+                isContinuingCalculation = true;
+}
 
 for (let button of buttons) {
     button.addEventListener('click', function () {
@@ -26,16 +34,20 @@ for (let button of buttons) {
             calculatorAnswer.textContent = "";
             firstValue = 0;
             secondValue = 0;
-            saveSecondValue = false;
+            isSavingSecondValue = false;
             isContinuingCalculation = false;
         }
         else if(button.textContent === "DEL"){
            // if(button.textContent.slice(-1) =)
            if(calculatorOperations.includes(calculatorQuestion.textContent.slice(-1))){
             firstValue = 0;
-            saveSecondValue = false;
+            isSavingSecondValue = false;
+            isContinuingCalculation = false;
            }
             calculatorQuestion.textContent = calculatorQuestion.textContent.slice(0, -1);
+            if(isSavingSecondValue){
+                updateAnswer();
+            }
         }
         else if(button.textContent === "%"){
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
@@ -63,7 +75,7 @@ for (let button of buttons) {
             
             firstValue = parseFloat(calculatorQuestion.textContent);
             currentOperator = button.textContent;
-            saveSecondValue = true;
+            isSavingSecondValue = true;
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
             
            }
@@ -71,12 +83,8 @@ for (let button of buttons) {
            else{
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
             firstValue = parseFloat(calculatorQuestion.textContent);
-            if(saveSecondValue){
-                secondValue = calculatorQuestion.textContent.slice(calculatorQuestion.textContent.indexOf(currentOperator) + 1,calculatorQuestion.textContent.length)
-                secondValue = parseFloat(secondValue);
-                currentAnswer = firstValue + secondValue;
-                calculatorAnswer.textContent = currentAnswer.toString();
-                isContinuingCalculation = true;
+            if(isSavingSecondValue){
+                updateAnswer();
             }
            }
 
