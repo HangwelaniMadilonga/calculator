@@ -4,6 +4,7 @@ let calculationResult = 0;
 let currentAnswer = 0;
 let currentOperator = "";
 let saveSecondValue = false;
+let isContinuingCalculation = false;
 
 const calculatorOperations = ["*","+","-","^","*","÷"];
 
@@ -26,6 +27,7 @@ for (let button of buttons) {
             firstValue = 0;
             secondValue = 0;
             saveSecondValue = false;
+            isContinuingCalculation = false;
         }
         else if(button.textContent === "DEL"){
            // if(button.textContent.slice(-1) =)
@@ -44,6 +46,13 @@ for (let button of buttons) {
             calculatorQuestion.textContent = firstValue.toString();
         }
         else if(calculatorOperations.includes(button.textContent)){
+            if(isContinuingCalculation){
+                firstValue = currentAnswer;
+                secondValue = 0;
+                
+                calculatorQuestion.textContent = currentAnswer.toString();
+                
+            }
             for (let i = 0; i < calculatorQuestion.textContent.length; i++) { 
                 if(calculatorOperations.includes(calculatorQuestion.textContent[i])){
                     alert("Cannot have two operators consecutively!");
@@ -56,6 +65,7 @@ for (let button of buttons) {
             currentOperator = button.textContent;
             saveSecondValue = true;
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
+            
            }
 
            else{
@@ -66,6 +76,7 @@ for (let button of buttons) {
                 secondValue = parseFloat(secondValue);
                 currentAnswer = firstValue + secondValue;
                 calculatorAnswer.textContent = currentAnswer.toString();
+                isContinuingCalculation = true;
             }
            }
 
