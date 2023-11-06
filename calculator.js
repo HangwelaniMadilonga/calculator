@@ -86,7 +86,6 @@ for (let button of buttons) {
         }
         else if(button.textContent === "%"){
             calculatorQuestion.textContent = calculatorQuestion.textContent + button.textContent;
-            //console.log(calculatorQuestion.textContent.slice(0,-1));
             
            
             if(isContinuingCalculation ){
@@ -116,7 +115,6 @@ for (let button of buttons) {
                     return;
                 }
             };
-        //if the value is not an operator and save
             
             firstValue = parseFloat(calculatorQuestion.textContent);
             currentOperator = button.textContent;
@@ -137,16 +135,6 @@ for (let button of buttons) {
                 updateAnswer();
             }
            }
-
-        
-       
-        /* 
-        make it so that the next number after the operator gets saved as the second number.
-        second number should be equal to true
-        After every update the calculator shoudl show the answer on the bottom.
-        If a person decides to add another operator then the finally answer updates over the question and then the result is displayed
-        second number becomes false
-        */
      
     })
 }
